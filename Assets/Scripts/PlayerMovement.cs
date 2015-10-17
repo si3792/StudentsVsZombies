@@ -20,7 +20,7 @@ public class PlayerMovement : MonoBehaviour {
 
         // movement control
         mov = new Vector2(0, 0);
-        if (Input.GetKey(KeyCode.RightArrow))
+        if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
         {
             if (this.transform.position.x < xLimitMax)
             {
@@ -29,7 +29,7 @@ public class PlayerMovement : MonoBehaviour {
             }
             side = direction.RIGHT;
         }
-        else if (Input.GetKey(KeyCode.LeftArrow))
+        else if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
         {
             if (this.transform.position.x > xLimitMin)
             {
@@ -39,7 +39,7 @@ public class PlayerMovement : MonoBehaviour {
             side = direction.LEFT;
         }
 
-        if (Input.GetKey(KeyCode.DownArrow))
+        if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
         {
             if (this.transform.position.y > yLimitMin)
             {
@@ -47,7 +47,7 @@ public class PlayerMovement : MonoBehaviour {
                 mov = new Vector2(mov.x, mov.y - speed);
             }
         }
-        else if (Input.GetKey(KeyCode.UpArrow))
+        else if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
         {
             if (this.transform.position.y < yLimitMax)
             {
