@@ -5,6 +5,8 @@ using System.Collections;
 
 public class PlayerMovement : MonoBehaviour {
 
+    public float health = 200;
+    public bool dead = false;
    public float speed = 0.02f;
     public float diggingSpeed = 0.2f;
    private enum direction {LEFT, RIGHT, UP, DOWN};
@@ -17,6 +19,8 @@ public class PlayerMovement : MonoBehaviour {
 
     void Control()
     {
+        if (dead == true) return;
+
 
         // movement control
         mov = new Vector2(0, 0);
@@ -104,6 +108,9 @@ public class PlayerMovement : MonoBehaviour {
 
         Control();
 
+        //die to low hp
+        if (health <= 0) dead = true;
+
         // force z to 0
         transform.position = new Vector3(transform.position.x, transform.position.y, 0);
     }
@@ -116,6 +123,13 @@ public class PlayerMovement : MonoBehaviour {
             {
                 other.gameObject.GetComponent<graveControl>().dirt -= diggingSpeed;
             }
+        }
+
+        if (other.gameObject.tag == "Zombie")
+        {
+            health -= 1;
+            GameObject cam = GameObject.FindGameObjectWithTag("MainCamera");
+            cam.GetComponent<PerlinShake>().test = true;
         }
     }
 
