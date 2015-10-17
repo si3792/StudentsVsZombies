@@ -13,35 +13,16 @@ public class PlayerMovement : MonoBehaviour {
     private Rigidbody2D rb2d;
     private Vector2 mov;
 
-    void Start()
+
+    void Control()
     {
-        rb2d = GetComponent<Rigidbody2D>();
-    }
-
-    void FixedUpdate()
-    {
-        rb2d.AddForce(mov);
-    }
-
-    // Update is called once per frame
-    void Update () {
-
-        // flip to left/right
-        if (side == direction.RIGHT)
-        {
-            transform.localRotation = Quaternion.Euler(0, 0, 0);
-        }
-        if(side == direction.LEFT)
-        {
-           transform.localRotation = Quaternion.Euler(0, 180, 0);
-        }
-
 
         // movement control
         mov = new Vector2(0, 0);
         if (Input.GetKey(KeyCode.RightArrow))
         {
-            if (this.transform.position.x < xLimitMax) {
+            if (this.transform.position.x < xLimitMax)
+            {
                 //this.transform.Translate(new Vector3(speed, 0, 0));
                 mov = new Vector2(mov.x + speed, mov.y);
             }
@@ -78,12 +59,38 @@ public class PlayerMovement : MonoBehaviour {
         // shooting
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if(side == direction.LEFT)
-            GameObject.FindGameObjectWithTag("itemEmitter").GetComponent<ShootItem>().Shoot(ItemMovement.direction.LEFT);
+            if (side == direction.LEFT)
+                GameObject.FindGameObjectWithTag("itemEmitter").GetComponent<ShootItem>().Shoot(ItemMovement.direction.LEFT);
 
             if (side == direction.RIGHT)
                 GameObject.FindGameObjectWithTag("itemEmitter").GetComponent<ShootItem>().Shoot(ItemMovement.direction.RIGHT);
         }
+    }
+
+    void Start()
+    {
+        rb2d = GetComponent<Rigidbody2D>();
+    }
+
+    void FixedUpdate()
+    {
+        rb2d.AddForce(mov);
+    }
+
+    // Update is called once per frame
+    void Update () {
+
+        // flip to left/right
+        if (side == direction.RIGHT)
+        {
+            transform.localRotation = Quaternion.Euler(0, 0, 0);
+        }
+        if(side == direction.LEFT)
+        {
+           transform.localRotation = Quaternion.Euler(0, 180, 0);
+        }
+
+        Control();
 
         // force z to 0
         transform.position = new Vector3(transform.position.x, transform.position.y, 0);
