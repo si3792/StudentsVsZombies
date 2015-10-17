@@ -6,6 +6,7 @@ using System.Collections;
 public class PlayerMovement : MonoBehaviour {
 
    public float speed = 0.02f;
+    public float diggingSpeed = 0.2f;
    private enum direction {LEFT, RIGHT, UP, DOWN};
     public float yLimitMax, yLimitMin;
     direction side;
@@ -96,6 +97,15 @@ public class PlayerMovement : MonoBehaviour {
         transform.position = new Vector3(transform.position.x, transform.position.y, 0);
     }
 
-
+    void OnTriggerStay2D(Collider2D other)
+    {
+        if(other.gameObject.tag == "graveArea")
+        {
+            if(Input.GetKey(KeyCode.E))
+            {
+                other.gameObject.GetComponent<graveControl>().dirt -= diggingSpeed;
+            }
+        }
+    }
 
 }
