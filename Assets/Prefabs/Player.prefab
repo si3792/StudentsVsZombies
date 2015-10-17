@@ -12,7 +12,7 @@ GameObject:
   - 114: {fileID: 11418956}
   m_Layer: 0
   m_Name: itemEmitter
-  m_TagString: Untagged
+  m_TagString: itemEmitter
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -140,10 +140,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 80
-  yLimitMax: 4.4000001
-  yLimitMin: -22
-  xLimitMax: 50
-  xLimitMin: -50
+  yLimitMax: 1000
+  yLimitMin: -1000
+  xLimitMax: 1000
+  xLimitMin: 1000
 --- !u!212 &21216200
 SpriteRenderer:
   m_ObjectHideFlags: 1
