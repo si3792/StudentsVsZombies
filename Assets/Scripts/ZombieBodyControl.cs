@@ -8,7 +8,6 @@ public class ZombieBodyControl : MonoBehaviour {
         if(other.gameObject.tag == "item")
         {
             this.gameObject.GetComponentInParent<CreeperController>().health -= other.GetComponent<ItemMovement>().damage;
-            Debug.Log("COLLIDE!");
         }
     }
 

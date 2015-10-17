@@ -8,6 +8,7 @@ TagManager:
   - itemEmitter
   - Zombie
   - item
+  - graveArea
   layers:
   - Default
   - TransparentFX

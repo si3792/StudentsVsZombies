@@ -6,6 +6,7 @@ using System.Collections;
 public class PlayerMovement : MonoBehaviour {
 
    public float speed = 0.02f;
+    public float diggingSpeed = 0.2f;
    private enum direction {LEFT, RIGHT, UP, DOWN};
     public float yLimitMax, yLimitMin;
     direction side;
@@ -19,7 +20,7 @@ public class PlayerMovement : MonoBehaviour {
 
         // movement control
         mov = new Vector2(0, 0);
-        if (Input.GetKey(KeyCode.RightArrow))
+        if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
         {
             if (this.transform.position.x < xLimitMax)
             {
@@ -28,7 +29,7 @@ public class PlayerMovement : MonoBehaviour {
             }
             side = direction.RIGHT;
         }
-        else if (Input.GetKey(KeyCode.LeftArrow))
+        else if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
         {
             if (this.transform.position.x > xLimitMin)
             {
@@ -38,7 +39,7 @@ public class PlayerMovement : MonoBehaviour {
             side = direction.LEFT;
         }
 
-        if (Input.GetKey(KeyCode.DownArrow))
+        if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
         {
             if (this.transform.position.y > yLimitMin)
             {
@@ -46,7 +47,7 @@ public class PlayerMovement : MonoBehaviour {
                 mov = new Vector2(mov.x, mov.y - speed);
             }
         }
-        else if (Input.GetKey(KeyCode.UpArrow))
+        else if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
         {
             if (this.transform.position.y < yLimitMax)
             {
@@ -96,6 +97,15 @@ public class PlayerMovement : MonoBehaviour {
         transform.position = new Vector3(transform.position.x, transform.position.y, 0);
     }
 
-
+    void OnTriggerStay2D(Collider2D other)
+    {
+        if(other.gameObject.tag == "graveArea")
+        {
+            if(Input.GetKey(KeyCode.E))
+            {
+                other.gameObject.GetComponent<graveControl>().dirt -= diggingSpeed;
+            }
+        }
+    }
 
 }
