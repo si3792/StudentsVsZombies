@@ -14,9 +14,13 @@ public class CreeperController : MonoBehaviour {
     private float effectiveSpeed;
 	private enum direction {LEFT, RIGHT, UP, DOWN};
 	private direction side;
+	private SceneGridManager gridManager;
 	// Use this for initialization
 	void Start () {
 		target = GameObject.FindGameObjectWithTag("Player");
+		gridManager = GameObject.FindGameObjectWithTag("GridManager").GetComponent<SceneGridManager>();
+		CircleCollider2D collider = this.gameObject.GetComponent<CircleCollider2D>();
+		gridManager.registerObject(this.gameObject, collider.transform.position.x, collider.transform.position.y, collider.radius * 2, collider.radius * 2, 5);
 		rb2d = GetComponent<Rigidbody2D>();
         effectiveSpeed = speed + Random.Range(-speedRandFactor, speedRandFactor);
     }
@@ -25,8 +29,10 @@ public class CreeperController : MonoBehaviour {
 	void Update () {
 		if (health <= 0)
 		{
+			gridManager.removeObject(this.gameObject);
 			Destroy(this.gameObject);
 		}
+		gridManager.updateObjectPosition(this.gameObject);
 		
 		if (target)
 		{

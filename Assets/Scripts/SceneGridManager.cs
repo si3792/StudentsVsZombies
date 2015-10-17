@@ -10,7 +10,9 @@ public class SceneGridManager : MonoBehaviour {
 	
 	internal struct GridData
 	{
-		public int x, y;
+		public int fromX, fromY;
+		public int toX, toY;
+		public float xOffset, yOffset;
 		public int cost;
 	};
 	
@@ -30,6 +32,7 @@ public class SceneGridManager : MonoBehaviour {
 		// Convert coordinates to positives
 		gridMaxX = maxX + xBias;
 		gridMaxY = maxY + yBias;
+		Debug.Log(string.Format("bias: {0}, {1}; max: {2}, {3}", xBias, yBias, gridMaxX, gridMaxY));
 		CostToTraverse = new int[gridMaxX, gridMaxY];
 		objectToGridData = new Dictionary<int, GridData>();
 	}
@@ -41,23 +44,61 @@ public class SceneGridManager : MonoBehaviour {
 	
 	public void getGridCoords(float worldX, float worldY, out int gridX, out int gridY)
 	{
-		gridX = (int)((worldX + xBias) / gridMaxX);
-		gridY = (int)((worldY + yBias) / gridMaxY);
+		gridX = (int)(worldX + xBias);
+		gridY = (int)(worldY + yBias);
 	}
 	
-	public void registerObject(GameObject obj, int ncost)
+	private void updateGrid(int fromX, int fromY, int toX, int toY, int cost)
+	{
+		for (int i = fromX; i <= toX; i++)
+		{
+			for (int j = fromY; j <= toY; j++)
+			{
+				CostToTraverse[i, j] += cost;
+			}
+		}
+	}
+	
+	public void registerObject(GameObject obj, float x, float y, float width, float height, int cost)
 	{
 		GridData d = new GridData();
-		d.cost = ncost;
-		getGridCoords(obj.transform.position.x, obj.transform.position.y, out d.x, out d.y);
+		d.cost = cost;
+		d.xOffset = obj.transform.position.x - x;
+		d.yOffset = obj.transform.position.y - y;
+		getGridCoords(x - width/2, y - height/2, out d.fromX, out d.fromY);
+		getGridCoords(x + width/2, y + height/2, out d.toX, out d.toY);
 		objectToGridData[obj.GetHashCode()] = d;
+		this.updateGrid(d.fromX, d.fromY, d.toX, d.toY, cost);
+		Debug.Log(string.Format("{0} at ({1},{2}) ({3}, {4})", obj.GetHashCode(), d.fromX, d.fromY, d.toX, d.toY));
 	}
 	
 	public void updateObjectPosition(GameObject obj)
 	{
 		GridData data = objectToGridData[obj.GetHashCode()];
-		CostToTraverse[data.x, data.y] -= data.cost;
-		getGridCoords(obj.transform.position.x, obj.transform.position.y, out data.x, out data.y);
+		
+		// Remove old weight from old positions
+		this.updateGrid(data.fromX, data.fromY, data.toX, data.toY, -data.cost);
+		
+		// calculate new positions
+		var width = data.toX - data.fromX;
+		var height = data.toY - data.fromY;
+		getGridCoords(obj.transform.position.x + data.xOffset - width/2, obj.transform.position.y + data.yOffset - height/2, out data.fromX, out data.fromY);
+		getGridCoords(obj.transform.position.x + data.xOffset + width/2, obj.transform.position.y + data.yOffset + height/2, out data.toX, out data.toY);
+		
+		// update map
 		objectToGridData[obj.GetHashCode()] = data;
+		
+		// Add weight to new positions
+		this.updateGrid(data.fromX, data.fromY, data.toX, data.toY, -data.cost);
+		
+		Debug.Log(string.Format("{0} at ({1},{2}) ({3}, {4})", obj.GetHashCode(), data.fromX, data.fromY, data.toX, data.toY));
+	}
+	
+	public void removeObject(GameObject obj)
+	{
+		GridData data = objectToGridData[obj.GetHashCode()];
+		this.updateGrid(data.fromX, data.fromY, data.toX, data.toY, -data.cost);
+		objectToGridData.Remove(obj.GetHashCode());
+		Debug.Log(string.Format("{0} at ({1},{2}) ({3}, {4})", obj.GetHashCode(), data.fromX, data.fromY, data.toX, data.toY));
 	}
 }
