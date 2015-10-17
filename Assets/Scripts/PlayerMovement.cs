@@ -75,6 +75,16 @@ public class PlayerMovement : MonoBehaviour {
         }
 
 
+        // shooting
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if(side == direction.LEFT)
+            GameObject.FindGameObjectWithTag("itemEmitter").GetComponent<ShootItem>().Shoot(ItemMovement.direction.LEFT);
+
+            if (side == direction.RIGHT)
+                GameObject.FindGameObjectWithTag("itemEmitter").GetComponent<ShootItem>().Shoot(ItemMovement.direction.RIGHT);
+        }
+
         // force z to 0
         transform.position = new Vector3(transform.position.x, transform.position.y, 0);
     }
