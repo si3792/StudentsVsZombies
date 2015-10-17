@@ -11,13 +11,12 @@ public class CreeperController : MonoBehaviour {
 	private Rigidbody2D rb2d;
 	private Vector2 mov;
 	private GameObject target;
-	private Vector3 targetPos;
     private float effectiveSpeed;
-	
+	private enum direction {LEFT, RIGHT, UP, DOWN};
+	private direction side;
 	// Use this for initialization
 	void Start () {
 		target = GameObject.FindGameObjectWithTag("Player");
-		targetPos = transform.position;
 		rb2d = GetComponent<Rigidbody2D>();
         effectiveSpeed = speed + Random.Range(-speedRandFactor, speedRandFactor);
     }
@@ -31,19 +30,32 @@ public class CreeperController : MonoBehaviour {
 		
 		if (target)
 		{
-			
 			Vector3 posNoZ = transform.position;
-			posNoZ.z = target.transform.position.z;
-			
+			posNoZ.z = target.transform.position.z;	
 			Vector3 movement = (target.transform.position - posNoZ).normalized * effectiveSpeed;
 			mov = new Vector3(movement.x, movement.y);
-			//targetPos = transform.position + (targetDirection.normalized * velocity * Time.deltaTime);
-			//transform.position = Vector3.Lerp(transform.position, targetPos + offset, 0.25f);
-			//transform.position = transform.position + (targetDirection.normalized * velocity * Time.deltaTime);
+			
+			if (movement.x > 0)
+			{
+				side = direction.RIGHT;
+			}
+			else
+			{
+				side = direction.LEFT;
+			}
 		}
 		else
 		{
 			mov = new Vector3(0, 0, 0);
+		}
+		
+		if (side == direction.RIGHT)
+		{
+			transform.localRotation = Quaternion.Euler(0, 0, 0);
+		}
+		if(side == direction.LEFT)
+		{
+			transform.localRotation = Quaternion.Euler(0, 180, 0);
 		}
 	}
 	
