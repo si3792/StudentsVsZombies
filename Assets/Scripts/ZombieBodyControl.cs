@@ -9,6 +9,11 @@ public class ZombieBodyControl : MonoBehaviour {
         {
             this.gameObject.GetComponentInParent<CreeperController>().health -= other.GetComponent<ItemMovement>().damage;
         }
+
+        if(other.gameObject.tag == "cone")
+        {
+            this.gameObject.GetComponentInParent<CreeperController>().health -= other.GetComponent<ConeControl>().damage; ;
+        }
     }
 
 
