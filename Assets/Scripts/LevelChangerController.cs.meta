@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: c7142948a83264f8cae9ad890bcdc8ba
+timeCreated: 1445081197
+licenseType: Free
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - onSprite: {fileID: 21300000, guid: 4c483d70833c34c4ba2692a67d19113a, type: 3}
+  - offSprite: {fileID: 21300000, guid: 1922d93ab8a754ef5a8600b8c8463839, type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
