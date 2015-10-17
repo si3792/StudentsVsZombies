@@ -12,13 +12,15 @@ public class CreeperController : MonoBehaviour {
 	private Vector2 mov;
 	private GameObject target;
 	private Vector3 targetPos;
+    private float effectiveSpeed;
 	
 	// Use this for initialization
 	void Start () {
 		target = GameObject.FindGameObjectWithTag("Player");
 		targetPos = transform.position;
 		rb2d = GetComponent<Rigidbody2D>();
-	}
+        effectiveSpeed = speed + Random.Range(-speedRandFactor, speedRandFactor);
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -29,7 +31,7 @@ public class CreeperController : MonoBehaviour {
 		
 		if (target)
 		{
-			var effectiveSpeed = speed + Random.Range(-speedRandFactor, speedRandFactor);
+			
 			Vector3 posNoZ = transform.position;
 			posNoZ.z = target.transform.position.z;
 			

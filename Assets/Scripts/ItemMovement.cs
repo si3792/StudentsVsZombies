@@ -9,7 +9,8 @@ public class ItemMovement : MonoBehaviour {
     };
     public direction dir;
     public float speed;
-    
+    public float damage = 20;
+
     void Update () {
         if(dir == direction.LEFT)
         {
@@ -20,6 +21,15 @@ public class ItemMovement : MonoBehaviour {
             this.transform.Translate(new Vector3(speed, 0, 0));
         }
     }
-	
-	
+
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Zombie")
+        {
+            Destroy(this.gameObject);
+        }
+    }
+
+
 }
