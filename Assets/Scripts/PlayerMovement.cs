@@ -10,7 +10,18 @@ public class PlayerMovement : MonoBehaviour {
     public float yLimitMax, yLimitMin;
     direction side;
     public float xLimitMax, xLimitMin;
+    private Rigidbody2D rb2d;
+    private Vector2 mov;
 
+    void Start()
+    {
+        rb2d = GetComponent<Rigidbody2D>();
+    }
+
+    void FixedUpdate()
+    {
+        rb2d.AddForce(mov);
+    }
 
     // Update is called once per frame
     void Update () {
@@ -24,20 +35,24 @@ public class PlayerMovement : MonoBehaviour {
         {
            transform.localRotation = Quaternion.Euler(0, 180, 0);
         }
-            
+
+
         // movement control
-        if(Input.GetKey(KeyCode.RightArrow))
+        mov = new Vector2(0, 0);
+        if (Input.GetKey(KeyCode.RightArrow))
         {
-            if (this.transform.position.x < xLimitMax) { 
-                this.transform.Translate(new Vector3(speed, 0, 0));
-               }
+            if (this.transform.position.x < xLimitMax) {
+                //this.transform.Translate(new Vector3(speed, 0, 0));
+                mov = new Vector2(mov.x + speed, mov.y);
+            }
             side = direction.RIGHT;
         }
         else if (Input.GetKey(KeyCode.LeftArrow))
         {
             if (this.transform.position.x > xLimitMin)
             {
-                this.transform.Translate(new Vector3(speed, 0, 0));
+                //this.transform.Translate(new Vector3(speed, 0, 0));
+                mov = new Vector2(mov.x - speed, mov.y);
             }
             side = direction.LEFT;
         }
@@ -46,14 +61,16 @@ public class PlayerMovement : MonoBehaviour {
         {
             if (this.transform.position.y > yLimitMin)
             {
-                this.transform.Translate(new Vector3(0, -speed, 0));
+                //this.transform.Translate(new Vector3(0, -speed, 0));
+                mov = new Vector2(mov.x, mov.y - speed);
             }
         }
         else if (Input.GetKey(KeyCode.UpArrow))
         {
             if (this.transform.position.y < yLimitMax)
             {
-                this.transform.Translate(new Vector3(0, speed, 0));
+                //this.transform.Translate(new Vector3(0, speed, 0));
+                mov = new Vector2(mov.x, mov.y + speed);
             }
         }
 
