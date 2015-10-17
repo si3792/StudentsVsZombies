@@ -660,8 +660,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c875a439005f74ab8bca2ee455d81d22, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minWidthOffset: 56
-  maxWidthOffset: 60
+  minWidthOffset: 58
+  maxWidthOffset: 62
   timeoutInSeconds: 3
   randomizeTimeout: 1
   probZ1: .300000012
