@@ -66,6 +66,17 @@ public class PlayerMovement : MonoBehaviour {
             if (side == direction.RIGHT)
                 GameObject.FindGameObjectWithTag("itemEmitter").GetComponent<ShootItem>().Shoot(ItemMovement.direction.RIGHT);
         }
+
+
+        if(Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            if (side == direction.LEFT)
+                GameObject.FindGameObjectWithTag("shotgunEmitter").GetComponent<ShootShotgun>().Shoot(ItemMovement.direction.LEFT);
+            if (side == direction.RIGHT)
+                GameObject.FindGameObjectWithTag("shotgunEmitter").GetComponent<ShootShotgun>().Shoot(ItemMovement.direction.RIGHT);
+        }
+
+
     }
 
     void Start()
