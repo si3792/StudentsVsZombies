@@ -214,15 +214,27 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 407320, guid: 0fab094a842a12349827f8fc5447292f, type: 2}
       propertyPath: m_RootOrder
-      value: 10
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 11481826, guid: 0fab094a842a12349827f8fc5447292f, type: 2}
       propertyPath: xLimitMin
-      value: -1000
+      value: -239
       objectReference: {fileID: 0}
     - target: {fileID: 11404950, guid: 0fab094a842a12349827f8fc5447292f, type: 2}
       propertyPath: sortingOffset
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 11481826, guid: 0fab094a842a12349827f8fc5447292f, type: 2}
+      propertyPath: yLimitMin
+      value: -25
+      objectReference: {fileID: 0}
+    - target: {fileID: 11481826, guid: 0fab094a842a12349827f8fc5447292f, type: 2}
+      propertyPath: yLimitMax
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 11481826, guid: 0fab094a842a12349827f8fc5447292f, type: 2}
+      propertyPath: xLimitMax
+      value: 239
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 5815486, guid: 0fab094a842a12349827f8fc5447292f, type: 2}
@@ -525,6 +537,55 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ae2f4e0a2e16cae4798c4373ed658f9b, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1386208402
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1386208404}
+  - 114: {fileID: 1386208403}
+  m_Layer: 0
+  m_Name: ZombieSpawning
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1386208403
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1386208402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c875a439005f74ab8bca2ee455d81d22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  minWidthOffset: 56
+  maxWidthOffset: 60
+  timeoutInSeconds: 3
+  randomizeTimeout: 1
+  probZ1: .300000012
+  Z1: {fileID: 131552, guid: b4a8178e1eea540a0be12eed9abd0501, type: 2}
+  probZ2: 0
+  Z2: {fileID: 131552, guid: b4a8178e1eea540a0be12eed9abd0501, type: 2}
+  probZ3: 0
+  Z3: {fileID: 0}
+--- !u!4 &1386208404
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1386208402}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 19
 --- !u!1001 &1555980758
 Prefab:
   m_ObjectHideFlags: 0
@@ -534,11 +595,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 448254, guid: b4a8178e1eea540a0be12eed9abd0501, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 58.1150208
+      value: 48.2000008
       objectReference: {fileID: 0}
     - target: {fileID: 448254, guid: b4a8178e1eea540a0be12eed9abd0501, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -15.0271683
+      value: -10.1000004
       objectReference: {fileID: 0}
     - target: {fileID: 448254, guid: b4a8178e1eea540a0be12eed9abd0501, type: 2}
       propertyPath: m_LocalPosition.z
