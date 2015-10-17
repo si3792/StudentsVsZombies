@@ -19,7 +19,7 @@ public class graveControl : MonoBehaviour {
             }
             else
             {
-                // ToDo - get artifact 
+                // ToDo - get artifact / curse / item
             }
         }
 
