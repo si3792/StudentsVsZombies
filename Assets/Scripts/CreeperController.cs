@@ -29,7 +29,6 @@ public class CreeperController : MonoBehaviour {
 	void Update () {
 		if (health <= 0)
 		{
-			gridManager.removeObject(this.gameObject);
 			Destroy(this.gameObject);
 		}
 		gridManager.updateObjectPosition(this.gameObject);
@@ -63,6 +62,11 @@ public class CreeperController : MonoBehaviour {
 		{
 			transform.localRotation = Quaternion.Euler(0, 180, 0);
 		}
+	}
+	
+	void OnDestroy()
+	{
+		gridManager.removeObject(this.gameObject);
 	}
 	
 	void FixedUpdate()

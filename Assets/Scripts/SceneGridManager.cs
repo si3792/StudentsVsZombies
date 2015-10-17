@@ -50,6 +50,10 @@ public class SceneGridManager : MonoBehaviour {
 	
 	private void updateGrid(int fromX, int fromY, int toX, int toY, int cost)
 	{
+		fromX = Mathf.Max(fromX, 0);
+		fromY = Mathf.Max(fromY, 0);
+		toX =  Mathf.Min(toX, gridMaxX - 1);
+		toY = Mathf.Min(toY, gridMaxY - 1);
 		for (int i = fromX; i <= toX; i++)
 		{
 			for (int j = fromY; j <= toY; j++)
@@ -69,7 +73,7 @@ public class SceneGridManager : MonoBehaviour {
 		getGridCoords(x + width/2, y + height/2, out d.toX, out d.toY);
 		objectToGridData[obj.GetHashCode()] = d;
 		this.updateGrid(d.fromX, d.fromY, d.toX, d.toY, cost);
-		Debug.Log(string.Format("{0} at ({1},{2}) ({3}, {4})", obj.GetHashCode(), d.fromX, d.fromY, d.toX, d.toY));
+		Debug.Log(string.Format("Registered object: {0} at ({1},{2}) ({3}, {4})", obj.GetHashCode(), d.fromX, d.fromY, d.toX, d.toY));
 	}
 	
 	public void updateObjectPosition(GameObject obj)
@@ -91,7 +95,7 @@ public class SceneGridManager : MonoBehaviour {
 		// Add weight to new positions
 		this.updateGrid(data.fromX, data.fromY, data.toX, data.toY, -data.cost);
 		
-		Debug.Log(string.Format("{0} at ({1},{2}) ({3}, {4})", obj.GetHashCode(), data.fromX, data.fromY, data.toX, data.toY));
+		//Debug.Log(string.Format("{0} at ({1},{2}) ({3}, {4})", obj.GetHashCode(), data.fromX, data.fromY, data.toX, data.toY));
 	}
 	
 	public void removeObject(GameObject obj)
@@ -99,6 +103,6 @@ public class SceneGridManager : MonoBehaviour {
 		GridData data = objectToGridData[obj.GetHashCode()];
 		this.updateGrid(data.fromX, data.fromY, data.toX, data.toY, -data.cost);
 		objectToGridData.Remove(obj.GetHashCode());
-		Debug.Log(string.Format("{0} at ({1},{2}) ({3}, {4})", obj.GetHashCode(), data.fromX, data.fromY, data.toX, data.toY));
+		//Debug.Log(string.Format("{0} at ({1},{2}) ({3}, {4})", obj.GetHashCode(), data.fromX, data.fromY, data.toX, data.toY));
 	}
 }
