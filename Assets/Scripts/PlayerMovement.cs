@@ -7,6 +7,7 @@ public class PlayerMovement : MonoBehaviour {
 
     public float health = 200;
     public bool dead = false;
+    public float maxSpeed;
    public float speed = 0.02f;
     public float diggingSpeed = 0.2f;
   // public enum ItemMovement.direction {LEFT, RIGHT, UP, DOWN};
@@ -93,6 +94,11 @@ public class PlayerMovement : MonoBehaviour {
     // Update is called once per frame
     void Update () {
 
+        if(speed < maxSpeed)
+        {
+            speed += 1;
+        }
+
         // flip to left/right
         if (side == ItemMovement.direction.RIGHT)
         {
@@ -125,6 +131,7 @@ public class PlayerMovement : MonoBehaviour {
         if (other.gameObject.tag == "Zombie")
         {
             health -= 1;
+            if (speed > 20) speed -= 5;
             GameObject cam = GameObject.FindGameObjectWithTag("Shaker");
             cam.GetComponent<PerlinShake>().test = true;
         }
