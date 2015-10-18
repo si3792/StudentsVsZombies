@@ -162,6 +162,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ed17a1071b82ea146a74a6f9f3002f5e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spamee: {fileID: 164330, guid: 8d9d785caff5c374aab7cf0c43ef474d, type: 2}
+  spamee2: {fileID: 176120, guid: 9efebcfc93ea9ca41a32e805e13b114d, type: 2}
 --- !u!114 &11493042
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -268,6 +270,14 @@ Prefab:
       propertyPath: speedRandFactor
       value: 50
       objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: spamee
+      value: 
+      objectReference: {fileID: 164330, guid: 8d9d785caff5c374aab7cf0c43ef474d, type: 2}
+    - target: {fileID: 0}
+      propertyPath: spamee2
+      value: 
+      objectReference: {fileID: 176120, guid: 9efebcfc93ea9ca41a32e805e13b114d, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 131552}
