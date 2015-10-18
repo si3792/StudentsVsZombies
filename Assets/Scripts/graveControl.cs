@@ -8,7 +8,16 @@ public class graveControl : MonoBehaviour {
     public float dirt = 100;
     public enum loot { EMPTY, WIN}
     public loot graveLoot;
-
+	
+	private SceneGridManager gridManager;
+	
+	void Start()
+	{
+		gridManager = GameObject.FindGameObjectWithTag("GridManager").GetComponent<SceneGridManager>();
+		BoxCollider2D collider = this.gameObject.GetComponent<BoxCollider2D>();
+		gridManager.registerObject(this.gameObject, collider.transform.position.x, collider.transform.position.y, collider.size.x, collider.size.y, 5);
+	}
+	
 	void Update () {
 	    
         if(dug == false && dirt <= 0)
@@ -25,5 +34,10 @@ public class graveControl : MonoBehaviour {
             }
         }
 
+	}
+	
+	void OnDestroy()
+	{
+		gridManager.removeObject(this.gameObject);
 	}
 }

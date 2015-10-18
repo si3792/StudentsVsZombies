@@ -7,15 +7,15 @@ public class PlayerMovement : MonoBehaviour {
 
     public float health = 200;
     public bool dead = false;
-   public float speed = 0.02f;
+    public float speed = 0.02f;
     public float diggingSpeed = 0.2f;
-   private enum direction {LEFT, RIGHT, UP, DOWN};
+    private enum direction {LEFT, RIGHT, UP, DOWN};
     public float yLimitMax, yLimitMin;
     direction side;
     public float xLimitMax, xLimitMin;
     private Rigidbody2D rb2d;
     private Vector2 mov;
-
+	private SceneGridManager gridManager;
 
     void Control()
     {
@@ -86,6 +86,9 @@ public class PlayerMovement : MonoBehaviour {
     void Start()
     {
         rb2d = GetComponent<Rigidbody2D>();
+		gridManager = GameObject.FindGameObjectWithTag("GridManager").GetComponent<SceneGridManager>();
+		BoxCollider2D collider = this.gameObject.GetComponent<BoxCollider2D>();
+		gridManager.registerPlayer(this.gameObject, collider.transform.position.x, collider.transform.position.y, collider.size.x, collider.size.y, 5);
     }
 
     void FixedUpdate()
@@ -110,7 +113,10 @@ public class PlayerMovement : MonoBehaviour {
 
         //die to low hp
         if (health <= 0) dead = true;
-
+		
+		// Update grid manager
+		gridManager.updateObjectPosition(this.gameObject);
+		
         // force z to 0
         transform.position = new Vector3(transform.position.x, transform.position.y, 0);
     }
@@ -132,5 +138,9 @@ public class PlayerMovement : MonoBehaviour {
             cam.GetComponent<PerlinShake>().test = true;
         }
     }
-
+	
+	void OnDestroy()
+	{
+		gridManager.removeObject(this.gameObject);
+	}
 }
