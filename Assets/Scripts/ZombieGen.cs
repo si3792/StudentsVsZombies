@@ -83,6 +83,8 @@ public class ZombieGen : MonoBehaviour {
 		{
 			SpawnZombie();
 			instantiationT = timeoutInSeconds + Random.Range(-randomizeTimeout, randomizeTimeout);
+			
+			if (timeoutInSeconds > 0.6) timeoutInSeconds -= 0.1f;
 		}
 	}
 }
