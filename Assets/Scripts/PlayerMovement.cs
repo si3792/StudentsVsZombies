@@ -65,11 +65,7 @@ public class PlayerMovement : MonoBehaviour {
         // shooting
         if (Input.GetKeyDown(KeyCode.R))
         {
-            if (side == ItemMovement.direction.LEFT)
-                GameObject.FindGameObjectWithTag("itemEmitter").GetComponent<ShootItem>().Shoot(ItemMovement.direction.LEFT);
-
-            if (side == ItemMovement.direction.RIGHT)
-                GameObject.FindGameObjectWithTag("itemEmitter").GetComponent<ShootItem>().Shoot(ItemMovement.direction.RIGHT);
+            GameObject.FindGameObjectWithTag("PlayerAnim").GetComponent<Animator>().SetTrigger("Shoot");
         }
 
 
