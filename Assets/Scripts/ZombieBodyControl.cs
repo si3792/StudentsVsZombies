@@ -17,8 +17,8 @@ public class ZombieBodyControl : MonoBehaviour {
         if(other.gameObject.tag == "item")
         {
 
-            Instantiate(spamee2, this.gameObject.transform.position, Random.rotation);
-            Instantiate(spamee2, this.gameObject.transform.position, Random.rotation);
+            Instantiate(spamee2, this.gameObject.transform.position, Quaternion.identity);
+            Instantiate(spamee2, this.gameObject.transform.position, Quaternion.identity);
             this.gameObject.GetComponentInParent<CreeperController>().health -= other.GetComponent<ItemMovement>().damage;
         }
 
