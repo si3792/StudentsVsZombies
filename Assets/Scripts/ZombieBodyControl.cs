@@ -9,6 +9,7 @@ public class ZombieBodyControl : MonoBehaviour {
 
     void OnDestroy()
     {
+        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>().killcount++;
         Instantiate(spameeME, this.gameObject.transform.position, Quaternion.identity);
     }
 

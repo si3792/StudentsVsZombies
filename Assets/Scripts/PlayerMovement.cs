@@ -6,6 +6,7 @@ using System.Collections;
 public class PlayerMovement : MonoBehaviour {
 
     public float health = 200;
+    public int killcount = 0;
     public bool dead = false;
     public float maxSpeed;
    public float speed = 0.02f;
