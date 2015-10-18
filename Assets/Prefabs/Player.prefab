@@ -194,6 +194,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c3e440bf00d6d944a8ecc77e0f9c4591, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 200
+  dead: 0
   speed: 240
   diggingSpeed: .200000003
   yLimitMax: 4

@@ -18,7 +18,7 @@ public class SceneGridManager : MonoBehaviour {
 	
 	private int xBias = 0, yBias = 0;
 	private int gridMaxX, gridMaxY;
-	private IDictionary<int, GridData> objectToGridData;
+	private IDictionary<int, GridData> objectToGridData = new Dictionary<int, GridData>();
 	// Use this for initialization
 	void Start ()
 	{
@@ -34,8 +34,7 @@ public class SceneGridManager : MonoBehaviour {
 		gridMaxY = maxY + yBias;
 		Debug.Log(string.Format("bias: {0}, {1}; max: {2}, {3}", xBias, yBias, gridMaxX, gridMaxY));
 		CostToTraverse = new int[gridMaxX, gridMaxY];
-		objectToGridData = new Dictionary<int, GridData>();
-	}
+    }
 	
 	// Update is called once per frame
 	void Update () {

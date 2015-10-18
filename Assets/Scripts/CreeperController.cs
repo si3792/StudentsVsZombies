@@ -71,6 +71,7 @@ public class CreeperController : MonoBehaviour {
 	
 	void FixedUpdate()
 	{
+        if(rb2d != null)
 		rb2d.AddForce(mov);
 	}
 	
