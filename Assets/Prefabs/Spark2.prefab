@@ -54,7 +54,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 150046}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9682675db0affd74695d350cc26499dd, type: 3}
   m_Name: 
@@ -71,6 +71,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9608a9cb4fa2d99448c62562bd2ec106, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  min: 1
+  max: 2
 --- !u!212 &21215616
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -103,7 +105,19 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: min
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: max
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 150046}
