@@ -164,6 +164,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   spamee: {fileID: 164330, guid: 8d9d785caff5c374aab7cf0c43ef474d, type: 2}
   spamee2: {fileID: 150046, guid: 4eb8eeec6fd10e64087b387dca7d92bf, type: 2}
+  spameeME: {fileID: 142940, guid: d9e0ddbc3f768b1499a44db2d5f0252a, type: 2}
 --- !u!114 &11493042
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -191,6 +192,7 @@ MonoBehaviour:
   offset: {x: 0, y: 0, z: 0}
   speed: 80
   speedRandFactor: 50
+  algorithms: {fileID: 0}
 --- !u!212 &21211072
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -278,6 +280,10 @@ Prefab:
       propertyPath: spamee2
       value: 
       objectReference: {fileID: 150046, guid: 4eb8eeec6fd10e64087b387dca7d92bf, type: 2}
+    - target: {fileID: 0}
+      propertyPath: spameeME
+      value: 
+      objectReference: {fileID: 142940, guid: d9e0ddbc3f768b1499a44db2d5f0252a, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 131552}
