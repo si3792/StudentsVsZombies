@@ -39,6 +39,9 @@ public class SceneGridManager : MonoBehaviour {
 		gridMaxY = maxY + yBias;
 		Debug.Log(string.Format("bias: {0}, {1}; max: {2}, {3}", xBias, yBias, gridMaxX, gridMaxY));
 		CostToTraverse = new int[gridMaxX, gridMaxY];
+		for (int i = 0; i < gridMaxX; i++)
+			for (int j = 0; j < gridMaxY; j++)
+				CostToTraverse[i, j] = 0;
     }
 	
 	// Update is called once per frame
@@ -50,6 +53,11 @@ public class SceneGridManager : MonoBehaviour {
 	{
 		gridX = (int)(worldX + xBias);
 		gridY = (int)(worldY + yBias);
+	}
+	
+	public Vector2 getRealCoords(int gridX, int gridY)
+	{
+		return new Vector2((float)gridX - xBias, (float)gridY - yBias);
 	}
 	
 	private void updateGrid(int fromX, int fromY, int toX, int toY, int cost)
@@ -71,10 +79,10 @@ public class SceneGridManager : MonoBehaviour {
 	{
 		if (x < 0 || y < 0 || x >= gridMaxX || y >= gridMaxY)
 		{
-			return true;
+			return false;
 		}
-		return false;
-	}
+		return true;
+	} 
 	
 	public void registerObject(GameObject obj, float x, float y, float width, float height, int cost)
 	{
@@ -86,7 +94,7 @@ public class SceneGridManager : MonoBehaviour {
 		getGridCoords(x + width/2, y + height/2, out d.toX, out d.toY);
 		objectToGridData[obj.GetHashCode()] = d;
 		this.updateGrid(d.fromX, d.fromY, d.toX, d.toY, cost);
-		Debug.Log(string.Format("Registered object: {0} at ({1},{2}) ({3}, {4})", obj.GetHashCode(), d.fromX, d.fromY, d.toX, d.toY));
+		//Debug.Log(string.Format("Registered object: {0} at ({1},{2}) ({3}, {4})", obj.GetHashCode(), d.fromX, d.fromY, d.toX, d.toY));
 	}
 	
 	public void registerPlayer(GameObject obj, float x, float y, float width, float height, int cost)

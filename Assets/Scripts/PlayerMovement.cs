@@ -82,7 +82,7 @@ public class PlayerMovement : MonoBehaviour {
         rb2d = GetComponent<Rigidbody2D>();
 		gridManager = GameObject.FindGameObjectWithTag("GridManager").GetComponent<SceneGridManager>();
 		BoxCollider2D collider = this.gameObject.GetComponent<BoxCollider2D>();
-		gridManager.registerPlayer(this.gameObject, collider.transform.position.x, collider.transform.position.y, collider.size.x, collider.size.y, 5);
+		gridManager.registerPlayer(this.gameObject, collider.transform.position.x, collider.transform.position.y, collider.size.x, collider.size.y, -100);
     }
 
     void FixedUpdate()
