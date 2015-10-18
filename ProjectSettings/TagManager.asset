@@ -13,6 +13,7 @@ TagManager:
   - cone
   - GridManager
   - Shaker
+  - PlayerAnim
   layers:
   - Default
   - TransparentFX
