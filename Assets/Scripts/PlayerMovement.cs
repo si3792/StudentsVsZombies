@@ -9,9 +9,9 @@ public class PlayerMovement : MonoBehaviour {
     public bool dead = false;
    public float speed = 0.02f;
     public float diggingSpeed = 0.2f;
-   private enum direction {LEFT, RIGHT, UP, DOWN};
+  // public enum ItemMovement.direction {LEFT, RIGHT, UP, DOWN};
     public float yLimitMax, yLimitMin;
-    direction side;
+    public ItemMovement.direction side;
     public float xLimitMax, xLimitMin;
     private Rigidbody2D rb2d;
     private Vector2 mov;
@@ -31,7 +31,7 @@ public class PlayerMovement : MonoBehaviour {
                 //this.transform.Translate(new Vector3(speed, 0, 0));
                 mov = new Vector2(mov.x + speed, mov.y);
             }
-            side = direction.RIGHT;
+            side = ItemMovement.direction.RIGHT;
         }
         else if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
         {
@@ -40,7 +40,7 @@ public class PlayerMovement : MonoBehaviour {
                 //this.transform.Translate(new Vector3(speed, 0, 0));
                 mov = new Vector2(mov.x - speed, mov.y);
             }
-            side = direction.LEFT;
+            side = ItemMovement.direction.LEFT;
         }
 
         if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
@@ -64,20 +64,17 @@ public class PlayerMovement : MonoBehaviour {
         // shooting
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if (side == direction.LEFT)
+            if (side == ItemMovement.direction.LEFT)
                 GameObject.FindGameObjectWithTag("itemEmitter").GetComponent<ShootItem>().Shoot(ItemMovement.direction.LEFT);
 
-            if (side == direction.RIGHT)
+            if (side == ItemMovement.direction.RIGHT)
                 GameObject.FindGameObjectWithTag("itemEmitter").GetComponent<ShootItem>().Shoot(ItemMovement.direction.RIGHT);
         }
 
 
         if(Input.GetKeyDown(KeyCode.LeftShift))
         {
-            if (side == direction.LEFT)
-                GameObject.FindGameObjectWithTag("shotgunEmitter").GetComponent<ShootShotgun>().Shoot(ItemMovement.direction.LEFT);
-            if (side == direction.RIGHT)
-                GameObject.FindGameObjectWithTag("shotgunEmitter").GetComponent<ShootShotgun>().Shoot(ItemMovement.direction.RIGHT);
+            GameObject.FindGameObjectWithTag("PlayerAnim").GetComponent<Animator>().SetTrigger("Attack");
         }
 
 
@@ -97,11 +94,11 @@ public class PlayerMovement : MonoBehaviour {
     void Update () {
 
         // flip to left/right
-        if (side == direction.RIGHT)
+        if (side == ItemMovement.direction.RIGHT)
         {
             transform.localRotation = Quaternion.Euler(0, 0, 0);
         }
-        if(side == direction.LEFT)
+        if(side == ItemMovement.direction.LEFT)
         {
            transform.localRotation = Quaternion.Euler(0, 180, 0);
         }
