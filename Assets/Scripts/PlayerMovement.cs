@@ -17,7 +17,7 @@ public class PlayerMovement : MonoBehaviour {
     private Rigidbody2D rb2d;
     private Vector2 mov;
 	private SceneGridManager gridManager;
-
+	public GameObject gameOver;
     void Control()
     {
         if (dead == true) return;
@@ -111,8 +111,11 @@ public class PlayerMovement : MonoBehaviour {
         Control();
 
         //die to low hp
-        if (health <= 0) dead = true;
-		
+        if (health <= 0 && !dead)
+        {
+        	dead = true;
+			Instantiate(gameOver, new Vector3(transform.position.x, -8, 0), Quaternion.identity);
+		}
 		// Update grid manager
 		gridManager.updateObjectPosition(this.gameObject);
 		
