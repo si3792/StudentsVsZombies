@@ -17,4 +17,9 @@ public class TimedDeath : MonoBehaviour {
         }
 
 	}
+
+    void OnApplicationQuit()
+    {
+        Destroy(this.gameObject);
+    }
 }
