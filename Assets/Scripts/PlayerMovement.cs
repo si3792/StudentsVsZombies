@@ -7,9 +7,10 @@ public class PlayerMovement : MonoBehaviour {
 
     public float health = 200;
     public bool dead = false;
-    public float speed = 0.02f;
+    public float maxSpeed;
+   public float speed = 0.02f;
     public float diggingSpeed = 0.2f;
-    private enum direction {LEFT, RIGHT, UP, DOWN};
+  // public enum ItemMovement.direction {LEFT, RIGHT, UP, DOWN};
     public float yLimitMax, yLimitMin;
     public ItemMovement.direction side;
     public float xLimitMax, xLimitMin;
