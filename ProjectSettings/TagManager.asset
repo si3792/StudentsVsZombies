@@ -12,6 +12,7 @@ TagManager:
   - shotgunEmitter
   - cone
   - GridManager
+  - Shaker
   layers:
   - Default
   - TransparentFX
