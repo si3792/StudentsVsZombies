@@ -430,7 +430,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 407320, guid: 0fab094a842a12349827f8fc5447292f, type: 2}
       propertyPath: m_RootOrder
-      value: 23
+      value: 22
       objectReference: {fileID: 0}
     - target: {fileID: 11451350, guid: 0fab094a842a12349827f8fc5447292f, type: 2}
       propertyPath: bonusStep

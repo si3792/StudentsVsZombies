@@ -12,6 +12,15 @@ public class PlayerAnimScript : MonoBehaviour {
         go.GetComponent<ShootShotgun>().Shoot(pl.GetComponent<PlayerMovement>().side );
     }
 
+    void shootItem()
+    {
+        GameObject go = GameObject.FindGameObjectWithTag("itemEmitter");
+
+        GameObject pl = GameObject.FindGameObjectWithTag("Player");
+
+        go.GetComponent<ShootItem>().Shoot(pl.GetComponent<PlayerMovement>().side);
+    }
+
     public float bloodlust = 0;
     public float bloodlustStep = 1;
     public float bloodlustTimeoutStep = 0.01f;
