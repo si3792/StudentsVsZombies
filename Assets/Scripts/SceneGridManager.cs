@@ -7,6 +7,11 @@ public class SceneGridManager : MonoBehaviour {
 	public float squareSide;
 	public int minX, maxX, minY, maxY;
 	public int[,] CostToTraverse;
+	public GameObject playerReference;
+	public int COST_PLAYER = 5;
+	public int COST_REGULAR_ZOMBIE = 5;
+	public int COST_WALL = 100000;
+	public int COST_GRAVESTONE = 100000;
 	
 	internal struct GridData
 	{
@@ -62,6 +67,15 @@ public class SceneGridManager : MonoBehaviour {
 		}
 	}
 	
+	public bool isCellValid(int x, int y)
+	{
+		if (x < 0 || y < 0 || x >= gridMaxX || y >= gridMaxY)
+		{
+			return true;
+		}
+		return false;
+	}
+	
 	public void registerObject(GameObject obj, float x, float y, float width, float height, int cost)
 	{
 		GridData d = new GridData();
@@ -73,6 +87,12 @@ public class SceneGridManager : MonoBehaviour {
 		objectToGridData[obj.GetHashCode()] = d;
 		this.updateGrid(d.fromX, d.fromY, d.toX, d.toY, cost);
 		Debug.Log(string.Format("Registered object: {0} at ({1},{2}) ({3}, {4})", obj.GetHashCode(), d.fromX, d.fromY, d.toX, d.toY));
+	}
+	
+	public void registerPlayer(GameObject obj, float x, float y, float width, float height, int cost)
+	{
+		playerReference = obj;
+		registerObject(obj, x, y, width, height, cost);
 	}
 	
 	public void updateObjectPosition(GameObject obj)
