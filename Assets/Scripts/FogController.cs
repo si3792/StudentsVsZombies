@@ -3,7 +3,7 @@ using System.Collections;
 
 public class FogController : MonoBehaviour {
 
-	public float timeToLive;
+	public float timeToLive = 1;
 	public float opacityFactor;
 	public Vector3 velocity;
 	
@@ -19,7 +19,8 @@ public class FogController : MonoBehaviour {
 			timeToLive -= Time.deltaTime;
 			
 			var oldColor = this.gameObject.GetComponent<SpriteRenderer>().material.color;
-			var color = new Color(oldColor.r, oldColor.g, oldColor.b, oldColor.a - opacityFactor);
+			this.gameObject.GetComponent<SpriteRenderer>().material.color = new Color(oldColor.r, oldColor.g, oldColor.b, oldColor.a - opacityFactor);
+			
 		}
 		else
 		{
