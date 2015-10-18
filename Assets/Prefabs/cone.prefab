@@ -156,7 +156,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86c610868e410d549ae22e5605262d56, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timer: .200000003
+  timer: .109999999
 --- !u!114 &11455386
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -225,6 +225,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: m_Enabled
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: timer
+      value: .109999999
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}

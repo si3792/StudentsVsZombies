@@ -62,7 +62,7 @@ public class PlayerMovement : MonoBehaviour {
 
 
         // shooting
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.R))
         {
             if (side == ItemMovement.direction.LEFT)
                 GameObject.FindGameObjectWithTag("itemEmitter").GetComponent<ShootItem>().Shoot(ItemMovement.direction.LEFT);
@@ -72,7 +72,7 @@ public class PlayerMovement : MonoBehaviour {
         }
 
 
-        if(Input.GetKeyDown(KeyCode.LeftShift))
+        if(Input.GetKeyDown(KeyCode.Space))
         {
             GameObject.FindGameObjectWithTag("PlayerAnim").GetComponent<Animator>().SetTrigger("Attack");
         }
