@@ -30,6 +30,7 @@ GameObject:
   - 4: {fileID: 471048}
   - 95: {fileID: 9529930}
   - 212: {fileID: 21211072}
+  - 114: {fileID: 11474828}
   m_Layer: 0
   m_Name: zombieAnim
   m_TagString: Untagged
@@ -165,6 +166,18 @@ MonoBehaviour:
   spamee: {fileID: 164330, guid: 8d9d785caff5c374aab7cf0c43ef474d, type: 2}
   spamee2: {fileID: 150046, guid: 4eb8eeec6fd10e64087b387dca7d92bf, type: 2}
   spameeME: {fileID: 142940, guid: d9e0ddbc3f768b1499a44db2d5f0252a, type: 2}
+--- !u!114 &11474828
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 144658}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c69b3b07441f9984199d688e0f9b3c2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sortingOffset: 0
 --- !u!114 &11493042
 MonoBehaviour:
   m_ObjectHideFlags: 1
