@@ -7,6 +7,7 @@ public class CreeperController : MonoBehaviour {
 	public Vector3 offset;
 	public float speed;
 	public float speedRandFactor;
+	public NavigationAlgorithms algorithms;
 	
 	private Rigidbody2D rb2d;
 	private Vector2 mov;
@@ -22,6 +23,7 @@ public class CreeperController : MonoBehaviour {
 		CircleCollider2D collider = this.gameObject.GetComponent<CircleCollider2D>();
 		gridManager.registerObject(this.gameObject, collider.transform.position.x, collider.transform.position.y, collider.radius * 2, collider.radius * 2, 5);
 		rb2d = GetComponent<Rigidbody2D>();
+		algorithms = this.gameObject.GetComponent<NavigationAlgorithms>();
         effectiveSpeed = speed + Random.Range(-speedRandFactor, speedRandFactor);
     }
 	
@@ -38,7 +40,10 @@ public class CreeperController : MonoBehaviour {
 			Vector3 posNoZ = transform.position;
 			posNoZ.z = target.transform.position.z;	
 			Vector3 movement = (target.transform.position - posNoZ).normalized * effectiveSpeed;
-			mov = new Vector3(movement.x, movement.y);
+			//Vector2 movementNorm = algorithms.normalizedOptimalMove(gameObject.transform.position.x, gameObject.transform.position.y, target.gameObject.transform.position.x, target.gameObject.transform.position.y);
+			//Vector3 movement = new Vector3(movementNorm.x * effectiveSpeed, movementNorm.y * effectiveSpeed, 0);
+			//Debug.Log(string.Format("{0} {1}", movementNorm.x, movementNorm.y));
+			mov = new Vector3(movement.x, movement.y, 0);
 			
 			if (movement.x > 0)
 			{
