@@ -12,7 +12,8 @@ public class ZombieBodyControl : MonoBehaviour {
 
         if(other.gameObject.tag == "cone")
         {
-            this.gameObject.GetComponentInParent<CreeperController>().health -= other.GetComponent<ConeControl>().damage; ;
+            this.gameObject.GetComponentInParent<CreeperController>().health -= other.GetComponent<ConeControl>().damage;
+            GameObject.FindGameObjectWithTag("PlayerAnim").GetComponent<PlayerAnimScript>().bloodlust += GameObject.FindGameObjectWithTag("PlayerAnim").GetComponent<PlayerAnimScript>().bloodlustStep;
         }
     }
 

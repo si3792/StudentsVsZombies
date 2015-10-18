@@ -12,6 +12,10 @@ public class PlayerAnimScript : MonoBehaviour {
         go.GetComponent<ShootShotgun>().Shoot(pl.GetComponent<PlayerMovement>().side );
     }
 
+    public float bloodlust = 0;
+    public float bloodlustStep = 1;
+    public float bloodlustTimeoutStep = 0.01f;
+
     /*
     // calcs alpha for maximum shine
     public float bonus = 1f;
@@ -40,11 +44,20 @@ public class PlayerAnimScript : MonoBehaviour {
         return cur;
     }*/
 
+
+    float formula2()
+    {
+        if (bloodlust < 0) bloodlust = 0;
+        return 1 + bloodlust;
+    }
+   
     void Update()
     {
+        bloodlust -= bloodlustTimeoutStep * Time.deltaTime;
+
         GameObject go = GameObject.FindGameObjectWithTag("Player");
         float hp = go.GetComponent<PlayerMovement>().health;
         this.gameObject.GetComponent<SpriteRenderer>().material.color = new Color(this.gameObject.GetComponent<SpriteRenderer>().material.color.r, this.gameObject.GetComponent<SpriteRenderer>().material.color.g,
-            this.gameObject.GetComponent<SpriteRenderer>().material.color.b, formula(hp)  );
+            this.gameObject.GetComponent<SpriteRenderer>().material.color.b, formula2()  );
     }
 }
