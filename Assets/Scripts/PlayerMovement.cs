@@ -128,7 +128,7 @@ public class PlayerMovement : MonoBehaviour {
         if (other.gameObject.tag == "Zombie")
         {
             health -= 1;
-            GameObject cam = GameObject.FindGameObjectWithTag("MainCamera");
+            GameObject cam = GameObject.FindGameObjectWithTag("Shaker");
             cam.GetComponent<PerlinShake>().test = true;
         }
     }

@@ -29,7 +29,7 @@ public class PerlinShake : MonoBehaviour {
 		
 		float elapsed = 0.0f;
 		
-		Vector3 originalCamPos = Camera.main.transform.position;
+		Vector3 originalCamPos = transform.position;
 		float randomStart = Random.Range(-1000.0f, 1000.0f);
 		
 		while (elapsed < duration) {
@@ -51,11 +51,11 @@ public class PerlinShake : MonoBehaviour {
 			x *= magnitude * damper;
 			y *= magnitude * damper;
 			
-			Camera.main.transform.position = new Vector3(x, y, originalCamPos.z);
+			transform.position = new Vector3(x, y, originalCamPos.z);
 				
 			yield return null;
 		}
 		
-		Camera.main.transform.position = originalCamPos;
+		transform.position = originalCamPos;
 	}
 }
