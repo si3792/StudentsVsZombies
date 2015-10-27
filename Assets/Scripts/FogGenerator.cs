@@ -11,7 +11,7 @@ public class FogGenerator : MonoBehaviour {
 	public float minX, minY, maxX, maxY;
 	public float minWidthOffset, maxWidthOffset;
 	public int count;
-	
+    public float speedRandomization;
 	public Sprite s1;
 	public Sprite s2;
 	public Sprite s3;
@@ -46,9 +46,11 @@ public class FogGenerator : MonoBehaviour {
 		else if (r < 0.6) spr = s3;
 		else if (r < 0.8) spr = s4;
 		else spr = s5;
-		
+
+        int factor = 1;
 		float x = Random.Range(minWidthOffset, maxWidthOffset);
-		if (Random.Range(0, 1) < 0.5) x = -x;
+		if (Random.value < 0.5) factor = -1;
+        x *= factor;
 		x += playerControl.transform.position.x;
 		
 		float y = Random.Range(minY, maxY);
@@ -58,10 +60,9 @@ public class FogGenerator : MonoBehaviour {
 		fogController.timeToLive = timeToLive + Random.Range (-randomFactor, randomFactor);
 		fogController.opacityFactor = opacityFactor;
 		
-		if (Random.Range (0, 1) < 0.5) fogController.velocity = new Vector2(1, 0);
-		else fogController.velocity = new Vector2(-1, 0);
+		fogController.velocity = new Vector2(-1 * factor, 0);
 		
-		fogController.velocity *= speed;
-		fogCopy.GetComponent<SpriteRenderer>().sprite = spr;
+		fogController.velocity *= (speed + Random.Range(0, speedRandomization));
+        fogCopy.GetComponent<SpriteRenderer>().sprite = spr;
 	}
 }
