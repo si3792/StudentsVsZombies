@@ -10,6 +10,7 @@ GameObject:
   - 4: {fileID: 489898}
   - 114: {fileID: 11425254}
   - 212: {fileID: 21267662}
+  - 114: {fileID: 11474418}
   m_Layer: 0
   m_Name: Fog
   m_TagString: Untagged
@@ -43,6 +44,18 @@ MonoBehaviour:
   timeToLive: 20
   opacityFactor: .00100000005
   velocity: {x: 5, y: 0, z: 0}
+--- !u!114 &11474418
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 118146}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c69b3b07441f9984199d688e0f9b3c2f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sortingOffset: 0
 --- !u!212 &21267662
 SpriteRenderer:
   m_ObjectHideFlags: 1

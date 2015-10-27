@@ -39,18 +39,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b96666ed6fff4662a51eb8522cfb84d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeBetweenSpawns: 4
+  timeBetweenSpawns: 1
   timeToLive: 80
-  opacityFactor: .00200000009
+  opacityFactor: .000899999985
   speed: 10
-  randomFactor: 3.5
+  randomFactor: .5
   minX: -160
-  minY: -24
+  minY: -22
   maxX: 160
-  maxY: 30
-  minWidthOffset: 59
-  maxWidthOffset: 67
-  count: 4
+  maxY: 17
+  minWidthOffset: 65
+  maxWidthOffset: 72
+  count: 2
   s1: {fileID: 21300000, guid: a1fcc3114f97c4b2da6a0c7f78465cfc, type: 3}
   s2: {fileID: 21300000, guid: 45d592b5eb0d2441a93940115e48cef4, type: 3}
   s3: {fileID: 21300000, guid: 2ca18ea1579024ebd9a0c0332ddd7b47, type: 3}
