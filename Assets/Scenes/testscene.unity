@@ -2366,4 +2366,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c69b3b07441f9984199d688e0f9b3c2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sortingOffset: -1300
+  sortingOffset: -200
