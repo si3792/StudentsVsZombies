@@ -60,6 +60,11 @@ public class PlayerAnimScript : MonoBehaviour {
         if (bloodlust < 0) bloodlust = 0;
         return 1 + bloodlust;
     }
+
+    public void playWhoosh()
+    {
+        GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>().playWhoosh();
+    }
    
     void Update()
     {

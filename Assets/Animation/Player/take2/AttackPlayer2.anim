@@ -25,6 +25,8 @@ AnimationClip:
       value: {fileID: 21300000, guid: afd474f6d6e2375499d210ae2b3db843, type: 3}
     - time: .316666663
       value: {fileID: 21300000, guid: 2e46b691948cc8b4e92aa2050662f398, type: 3}
+    - time: .349999994
+      value: {fileID: 21300000, guid: 2e46b691948cc8b4e92aa2050662f398, type: 3}
     - time: .400000006
       value: {fileID: 21300000, guid: b7354654f8128f54fa25c400d11bd8ce, type: 3}
     - time: .550000012
@@ -53,6 +55,7 @@ AnimationClip:
     - {fileID: 21300000, guid: 294dc27a3c4d8514bb2c7bc7fa194e31, type: 3}
     - {fileID: 21300000, guid: afd474f6d6e2375499d210ae2b3db843, type: 3}
     - {fileID: 21300000, guid: 2e46b691948cc8b4e92aa2050662f398, type: 3}
+    - {fileID: 21300000, guid: 2e46b691948cc8b4e92aa2050662f398, type: 3}
     - {fileID: 21300000, guid: b7354654f8128f54fa25c400d11bd8ce, type: 3}
     - {fileID: 21300000, guid: 336d69fec0b7d7743b2950d902d036e1, type: 3}
     - {fileID: 21300000, guid: 4fff3a4d614064d4698ad2d1a4be67bf, type: 3}
@@ -79,6 +82,13 @@ AnimationClip:
   m_HasMotionFloatCurves: 0
   m_GenerateMotionCurves: 0
   m_Events:
+  - time: .0333333351
+    functionName: playWhoosh
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
   - time: .366666675
     functionName: shoot
     data: 

@@ -5,6 +5,8 @@ using System.Collections;
 
 public class PlayerMovement : MonoBehaviour {
 
+    public AudioClip sword;
+    public AudioClip death;
     public float health = 200;
     public int killcount = 0;
     public bool dead = false;
@@ -72,11 +74,18 @@ public class PlayerMovement : MonoBehaviour {
 
         if(Input.GetKeyDown(KeyCode.Space))
         {
+            
             GameObject.FindGameObjectWithTag("PlayerAnim").GetComponent<Animator>().SetTrigger("Attack");
         }
 
-
+  
     }
+
+    public void playWhoosh()
+    {
+        this.gameObject.GetComponent<AudioSource>().PlayOneShot(sword);
+    }
+
 
     void Start()
     {
@@ -115,8 +124,10 @@ public class PlayerMovement : MonoBehaviour {
         if (health <= 0 && !dead)
         {
         	dead = true;
-			//Instantiate(gameOver, new Vector3(transform.position.x, -8, 0), Quaternion.identity);
-		}
+            this.gameObject.GetComponent<AudioSource>().volume = 1f;
+            this.gameObject.GetComponent<AudioSource>().PlayOneShot(death);
+            //Instantiate(gameOver, new Vector3(transform.position.x, -8, 0), Quaternion.identity);
+        }
 		// Update grid manager
 		gridManager.updateObjectPosition(this.gameObject);
 		
