@@ -8,7 +8,9 @@ public class CreeperController : MonoBehaviour {
 	public float speed;
 	public float speedRandFactor;
 	public NavigationAlgorithms algorithms;
+	public float angleRange;
 	
+	private float objectAvoidanceDist = 1.0f;
 	private Rigidbody2D rb2d;
 	private Vector2 mov;
 	private GameObject target;
@@ -16,12 +18,16 @@ public class CreeperController : MonoBehaviour {
 	private enum direction {LEFT, RIGHT, UP, DOWN};
 	private direction side;
 	private SceneGridManager gridManager;
+	private CircleCollider2D collider2d;
+	private bool directMove = true;
+	private int unstuckTicks = 0;
+	
 	// Use this for initialization
 	void Start () {
 		target = GameObject.FindGameObjectWithTag("Player");
 		gridManager = GameObject.FindGameObjectWithTag("GridManager").GetComponent<SceneGridManager>();
-		CircleCollider2D collider = this.gameObject.GetComponent<CircleCollider2D>();
-		gridManager.registerObject(this.gameObject, collider.transform.position.x, collider.transform.position.y, collider.radius * 2, collider.radius * 2, 5);
+		collider2d = this.gameObject.GetComponent<CircleCollider2D>();
+		gridManager.registerObject(this.gameObject, collider2d.transform.position.x, collider2d.transform.position.y, collider2d.radius * 2, collider2d.radius * 2, 5);
 		rb2d = GetComponent<Rigidbody2D>();
 		algorithms = this.gameObject.GetComponent<NavigationAlgorithms>();
         effectiveSpeed = speed + Random.Range(-speedRandFactor, speedRandFactor);
@@ -38,18 +44,35 @@ public class CreeperController : MonoBehaviour {
 		if (target)
 		{
 			Vector3 posNoZ = transform.position;
-			posNoZ.z = target.transform.position.z;	
+			posNoZ.z = 0;
 			Vector3 movement = (target.transform.position - posNoZ).normalized * effectiveSpeed;
+			
+			if (directMove)
+			{
+				mov = new Vector3(movement.x, movement.y, 0);
+			}
+			else
+			{
+				if (unstuckTicks > 0)
+				{
+					unstuckTicks--;
+				}
+				else
+				{
+					mov = new Vector2(Random.value, Random.value).normalized * effectiveSpeed;
+					unstuckTicks = 100;
+				}
+			}
+			
 			//Vector2 movementNorm = algorithms.normalizedOptimalMove(gameObject.transform.position.x, gameObject.transform.position.y, target.gameObject.transform.position.x, target.gameObject.transform.position.y);
 			//Vector3 movement = new Vector3(movementNorm.x * effectiveSpeed, movementNorm.y * effectiveSpeed, 0);
 			//Debug.Log(string.Format("{0} {1}", movementNorm.x, movementNorm.y));
-			mov = new Vector3(movement.x, movement.y, 0);
 			
 			if (movement.x > 0)
 			{
 				side = direction.RIGHT;
 			}
-			else
+			else if (movement.x < 0)
 			{
 				side = direction.LEFT;
 			}
@@ -69,6 +92,51 @@ public class CreeperController : MonoBehaviour {
 		}
 	}
 	
+	bool CollisionOnTheWay()
+	{
+		Vector3 posNoZ = transform.position;
+		posNoZ.z = 0;
+		Vector3 movement = (target.transform.position - posNoZ).normalized * effectiveSpeed;
+		Vector3 overlapCheckPos = (movement.normalized * (collider2d.radius + 0.5f) + transform.position);
+		RaycastHit2D testHit1 = Physics2D.Raycast(collider2d.transform.position, target.transform.position);
+		RaycastHit2D testHit2 = Physics2D.Raycast(collider2d.transform.position + new Vector3(collider2d.radius, 0, 0), target.transform.position);
+		RaycastHit2D testHit3 = Physics2D.Raycast(collider2d.transform.position + new Vector3(-collider2d.radius, 0, 0), target.transform.position);
+		if (testHit1.collider != null && Vector3.Distance(testHit1.transform.position, this.transform.position) <= collider2d.radius + objectAvoidanceDist)
+		{
+			Debug.Log("" + testHit1.transform);
+			return true;
+		}
+		if (testHit2.collider != null && Vector3.Distance(testHit2.transform.position, this.transform.position) <= collider2d.radius + objectAvoidanceDist)
+		{
+			Debug.Log("" + testHit2.transform);
+			return true;
+		}
+		if (testHit3.collider != null && Vector3.Distance(testHit3.transform.position, this.transform.position) <= collider2d.radius + objectAvoidanceDist)
+		{
+			Debug.Log("" + testHit3.transform);
+			return true;
+		}
+		return false;
+	}
+	
+	void OnCollisionEnter2D(Collision2D collision) {
+		if (collision.collider.gameObject.tag != "Player") {
+			//mov = new Vector3(0, 1, 0) * effectiveSpeed;
+			//Debug.Log ("kor");
+			directMove = false;
+		}
+		//Debug.Log("pishka");
+	}
+	
+	void OnCollisionExit2D(Collision2D collision) {
+		if (collision.collider.gameObject.tag != "Player") {
+			//mov = new Vector3(0, 1, 0) * effectiveSpeed;
+			//Debug.Log ("kor");
+			directMove = true;
+		}
+		//Debug.Log("pishka");
+	}
+	
 	void OnDestroy()
 	{
 		gridManager.removeObject(this.gameObject);
@@ -77,7 +145,9 @@ public class CreeperController : MonoBehaviour {
 	void FixedUpdate()
 	{
         if(rb2d != null)
-		rb2d.AddForce(mov);
+        {
+			rb2d.AddForce(mov);
+		}
 	}
 	
 }

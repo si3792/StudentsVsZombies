@@ -13,7 +13,7 @@ GameObject:
   - 50: {fileID: 5002146}
   - 58: {fileID: 5813216}
   - 114: {fileID: 11498316}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: zombie
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -31,7 +31,7 @@ GameObject:
   - 95: {fileID: 9529930}
   - 212: {fileID: 21211072}
   - 114: {fileID: 11474828}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: zombieAnim
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48,7 +48,7 @@ GameObject:
   - 4: {fileID: 407830}
   - 61: {fileID: 6135194}
   - 114: {fileID: 11414734}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: zombieBody
   m_TagString: Zombie
   m_Icon: {fileID: 0}
@@ -206,6 +206,8 @@ MonoBehaviour:
   speed: 80
   speedRandFactor: 50
   algorithms: {fileID: 0}
+  objectAvoidanceDist: 2.5
+  angleRange: 20
 --- !u!212 &21211072
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -297,6 +299,18 @@ Prefab:
       propertyPath: spameeME
       value: 
       objectReference: {fileID: 142940, guid: d9e0ddbc3f768b1499a44db2d5f0252a, type: 2}
+    - target: {fileID: 0}
+      propertyPath: m_Layer
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: objectAvoidanceDist
+      value: 2.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: angleRange
+      value: 20
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 131552}

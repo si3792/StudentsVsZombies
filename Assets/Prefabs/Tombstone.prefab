@@ -28,7 +28,7 @@ GameObject:
   - 4: {fileID: 400174}
   - 61: {fileID: 6197204}
   - 114: {fileID: 11443322}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: graveArea
   m_TagString: graveArea
   m_Icon: {fileID: 0}
@@ -54,7 +54,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 166680}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -18.0331841, y: -5.46530437, z: 0}
+  m_LocalPosition: {x: 135.682816, y: -9.19135952, z: 0}
   m_LocalScale: {x: 3, y: 3, z: 1}
   m_Children:
   - {fileID: 400174}
