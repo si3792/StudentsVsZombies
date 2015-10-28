@@ -8,6 +8,7 @@ public class LevelChangerController : MonoBehaviour {
 	public GameObject[] associatedSwitches;
 	public bool canSwitch;
 	public string levelName;
+    public bool selected = false;
 	
 	// Use this for initialization
 	void Start ()
@@ -23,6 +24,7 @@ public class LevelChangerController : MonoBehaviour {
 	
 	void OnMouseEnter() 
 	{
+        selected = true;
 		if (this.canSwitch == true)
 		{
 			this.setSprite(onSprite);
@@ -31,7 +33,8 @@ public class LevelChangerController : MonoBehaviour {
 	
 	void OnMouseExit()
 	{
-		this.setSprite(offSprite);
+        selected = false;
+        this.setSprite(offSprite);
 	}	
 	
 	void OnMouseDown()
