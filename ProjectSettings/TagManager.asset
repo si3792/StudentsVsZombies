@@ -16,6 +16,7 @@ TagManager:
   - PlayerAnim
   - AstarPath
   - swordTip
+  - tagMag
   layers:
   - Default
   - TransparentFX
