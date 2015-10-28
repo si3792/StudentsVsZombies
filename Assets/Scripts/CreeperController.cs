@@ -59,7 +59,19 @@ public class CreeperController : MonoBehaviour {
 				}
 				else
 				{
-					mov = new Vector2(Random.value - 0.5f, Random.value -0.5f).normalized * effectiveSpeed;
+					float r = Random.value;
+					if (r < 0.4) // preserve x randomize y
+					{
+						mov = new Vector2(movement.x, Random.value - 0.5f).normalized * effectiveSpeed;
+					}
+					else if (r < 0.8) // Preserve y, randomize x
+					{
+						mov = new Vector2(Random.value - 0.5f, movement.y).normalized * effectiveSpeed;
+					}
+					else // Random all the way!
+					{
+						mov = new Vector2(Random.value - 0.5f, Random.value - 0.5f).normalized * effectiveSpeed;
+					}
 					unstuckTicks = 1;
 				}
 			}
@@ -120,7 +132,7 @@ public class CreeperController : MonoBehaviour {
 	}
 	
 	void OnCollisionEnter2D(Collision2D collision) {
-		if (collision.collider.gameObject.tag != "Player" || collision.collider.gameObject.tag != "Zombie") {
+		if (collision.collider.gameObject.tag != "Player" && collision.collider.gameObject.tag != "Zombie") {
 			//mov = new Vector3(0, 1, 0) * effectiveSpeed;
 			//Debug.Log ("kor");
 			directMove = false;
@@ -129,7 +141,7 @@ public class CreeperController : MonoBehaviour {
 	}
 	
 	void OnCollisionExit2D(Collision2D collision) {
-		if (collision.collider.gameObject.tag != "Player" || collision.collider.gameObject.tag != "Zombie") {
+		if (collision.collider.gameObject.tag != "Player" && collision.collider.gameObject.tag != "Zombie") {
 			//mov = new Vector3(0, 1, 0) * effectiveSpeed;
 			//Debug.Log ("kor");
 			directMove = true;
