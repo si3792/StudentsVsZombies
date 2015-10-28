@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   dir: 0
-  speed: .5
+  speed: 1
   damage: 100
 --- !u!212 &21216004
 SpriteRenderer:
@@ -176,6 +176,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: damage
       value: 100
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: speed
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
