@@ -6,7 +6,7 @@ public class hpScript : MonoBehaviour {
 	
 	void Update () {
 
-        this.gameObject.GetComponent<Image>().fillAmount = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>().health / 400;
+        this.gameObject.GetComponent<Image>().fillAmount = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>().health / 200;
 
 	}
 }
