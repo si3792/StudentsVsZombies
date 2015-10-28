@@ -3,6 +3,7 @@ using System.Collections;
 
 public class ItemMovement : MonoBehaviour {
 
+
     public enum direction
     {
         LEFT, RIGHT
@@ -10,9 +11,11 @@ public class ItemMovement : MonoBehaviour {
     public direction dir;
     public float speed;
     public float damage = 20;
+    public AudioClip pew;
 
     void Start()
     {
+        this.gameObject.GetComponent<AudioSource>().PlayOneShot(pew);
         if (dir != direction.LEFT)
         {
             transform.localRotation = Quaternion.Euler(0, 180, 0);
