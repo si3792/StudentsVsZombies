@@ -20,7 +20,7 @@ public class CreeperController : MonoBehaviour {
 	private SceneGridManager gridManager;
 	private CircleCollider2D collider2d;
 	private bool directMove = true;
-	private int unstuckTicks = 0;
+	private float unstuckTicks = 0;
 	
 	// Use this for initialization
 	void Start () {
@@ -55,12 +55,12 @@ public class CreeperController : MonoBehaviour {
 			{
 				if (unstuckTicks > 0)
 				{
-					unstuckTicks--;
+					unstuckTicks -= Time.deltaTime;
 				}
 				else
 				{
-					mov = new Vector2(Random.value, Random.value).normalized * effectiveSpeed;
-					unstuckTicks = 100;
+					mov = new Vector2(Random.value - 0.5f, Random.value -0.5f).normalized * effectiveSpeed;
+					unstuckTicks = 1;
 				}
 			}
 			
@@ -120,7 +120,7 @@ public class CreeperController : MonoBehaviour {
 	}
 	
 	void OnCollisionEnter2D(Collision2D collision) {
-		if (collision.collider.gameObject.tag != "Player") {
+		if (collision.collider.gameObject.tag != "Player" || collision.collider.gameObject.tag != "Zombie") {
 			//mov = new Vector3(0, 1, 0) * effectiveSpeed;
 			//Debug.Log ("kor");
 			directMove = false;
@@ -129,7 +129,7 @@ public class CreeperController : MonoBehaviour {
 	}
 	
 	void OnCollisionExit2D(Collision2D collision) {
-		if (collision.collider.gameObject.tag != "Player") {
+		if (collision.collider.gameObject.tag != "Player" || collision.collider.gameObject.tag != "Zombie") {
 			//mov = new Vector3(0, 1, 0) * effectiveSpeed;
 			//Debug.Log ("kor");
 			directMove = true;
