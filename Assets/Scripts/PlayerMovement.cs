@@ -115,7 +115,7 @@ public class PlayerMovement : MonoBehaviour {
         if (health <= 0 && !dead)
         {
         	dead = true;
-			Instantiate(gameOver, new Vector3(transform.position.x, -8, 0), Quaternion.identity);
+			//Instantiate(gameOver, new Vector3(transform.position.x, -8, 0), Quaternion.identity);
 		}
 		// Update grid manager
 		gridManager.updateObjectPosition(this.gameObject);

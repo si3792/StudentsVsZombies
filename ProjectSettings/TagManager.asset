@@ -25,7 +25,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - newUI
   - 
   - 
   - 
@@ -58,4 +58,7 @@ TagManager:
     locked: 0
   - name: Foreground
     uniqueID: 2907840475
+    locked: 0
+  - name: UISort
+    uniqueID: 2714316283
     locked: 0
