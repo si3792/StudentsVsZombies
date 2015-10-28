@@ -8,6 +8,6 @@ public class FireAnimControl : MonoBehaviour {
         GameObject go = GameObject.FindGameObjectWithTag("Player");
         float hp = go.GetComponent<PlayerMovement>().health;
         this.gameObject.GetComponent<SpriteRenderer>().material.color = new Color(this.gameObject.GetComponent<SpriteRenderer>().material.color.r, this.gameObject.GetComponent<SpriteRenderer>().material.color.g,
-            this.gameObject.GetComponent<SpriteRenderer>().material.color.b, hp / 400);
+            this.gameObject.GetComponent<SpriteRenderer>().material.color.b, hp / 200);
     }
 }
