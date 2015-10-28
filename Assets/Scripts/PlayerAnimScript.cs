@@ -56,6 +56,7 @@ public class PlayerAnimScript : MonoBehaviour {
 
     float formula2()
     {
+        if (GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerMovement>().dead == true) return 0.1f;
         if (bloodlust < 0) bloodlust = 0;
         return 1 + bloodlust;
     }
