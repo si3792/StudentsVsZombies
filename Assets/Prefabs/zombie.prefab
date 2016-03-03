@@ -13,6 +13,7 @@ GameObject:
   - 50: {fileID: 5002146}
   - 58: {fileID: 5813216}
   - 114: {fileID: 11498316}
+  - 114: {fileID: 11449102}
   m_Layer: 2
   m_Name: zombie
   m_TagString: Untagged
@@ -62,7 +63,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 170518}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.8466568, y: .898101807, z: 0}
+  m_LocalPosition: {x: 1.8466568, y: 0.8981018, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 448254}
@@ -89,7 +90,7 @@ Transform:
   m_GameObject: {fileID: 144658}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.60000002, y: 1.60000002, z: 1}
+  m_LocalScale: {x: 1.6, y: 1.6, z: 1}
   m_Children: []
   m_Father: {fileID: 448254}
   m_RootOrder: 1
@@ -100,6 +101,7 @@ Rigidbody2D:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 131552}
+  m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 8
   m_AngularDrag: 0
@@ -116,12 +118,13 @@ CircleCollider2D:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 131552}
   m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
-  m_Offset: {x: -.239999995, y: -1.71000004}
+  m_Offset: {x: -0.24, y: -1.71}
   serializedVersion: 2
-  m_Radius: .970000029
+  m_Radius: 0.97
 --- !u!61 &6135194
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -129,12 +132,13 @@ BoxCollider2D:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 170518}
   m_Enabled: 1
+  m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_Offset: {x: -2.01999998, y: -.959999979}
+  m_Offset: {x: -2.02, y: -0.96}
   serializedVersion: 2
-  m_Size: {x: 2.01999998, y: 5.23000002}
+  m_Size: {x: 2.02, y: 5.23}
 --- !u!95 &9529930
 Animator:
   serializedVersion: 3
@@ -166,6 +170,43 @@ MonoBehaviour:
   spamee: {fileID: 164330, guid: 8d9d785caff5c374aab7cf0c43ef474d, type: 2}
   spamee2: {fileID: 150046, guid: 4eb8eeec6fd10e64087b387dca7d92bf, type: 2}
   spameeME: {fileID: 142940, guid: d9e0ddbc3f768b1499a44db2d5f0252a, type: 2}
+--- !u!114 &11449102
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 131552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c57bb3dd235686546bd958b66c29d4e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  TriggerType: 0
+  themeId: 6
+  _immediately: 0
+  _keepSilentUntilNextTrigger: 1
+  _overrideDefaultFadeoutTime: 0
+  _fadeOutSeconds: 3
+  _dontExecuteIfOtherTriggersAreFiring: 0
+  _restrictBlockToThisThemeType: 0
+  _overrideDefaultRestTime: 0
+  _overrideRestSecondsMin: 30
+  _overrideRestSecondsMax: 60
+  overrideMusicDurationInSeconds: 1
+  musicDurationInSeconds: 1
+  fireContinuously: 1
+  deactivateAfterFiringOnce: 0
+  hasFired: 0
+  resetHasFiredStateOnDisable: 0
+  addUpIntensities: 1
+  limitIntensitySum: 1
+  interruptAnyTheme: 0
+  playerCollider: {fileID: 0}
+  localCollider: {fileID: 0}
+  triggerRadius: 25
+  minimumIntensity: 0.1
+  maximumIntensity: 0.2531646
+  scaleIntensityByDistance: 1
 --- !u!114 &11474828
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -206,7 +247,6 @@ MonoBehaviour:
   speed: 80
   speedRandFactor: 50
   algorithms: {fileID: 0}
-  objectAvoidanceDist: 2.5
   angleRange: 20
 --- !u!212 &21211072
 SpriteRenderer:
@@ -226,14 +266,18 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_AutoUVMaxDistance: .5
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
 --- !u!212 &21245500
 SpriteRenderer:
   m_ObjectHideFlags: 1
@@ -252,14 +296,18 @@ SpriteRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_AutoUVMaxDistance: .5
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 7d5c59e61c7ee0e43bfcd4d0b0803862, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
