@@ -28,7 +28,7 @@ public class PlayerMovement : MonoBehaviour {
 
         // movement control
         mov = new Vector2(0, 0);
-        if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D))
+        if (Input.GetKey(KeyCode.RightArrow) || Input.GetKey(KeyCode.D) || Input.GetAxis("Horizontal") > 0)
         {
             if (this.transform.position.x < xLimitMax)
             {
@@ -37,7 +37,7 @@ public class PlayerMovement : MonoBehaviour {
             }
             side = ItemMovement.direction.RIGHT;
         }
-        else if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A))
+		else if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.A) || Input.GetAxis("Horizontal") < 0)
         {
             if (this.transform.position.x > xLimitMin)
             {
@@ -47,7 +47,7 @@ public class PlayerMovement : MonoBehaviour {
             side = ItemMovement.direction.LEFT;
         }
 
-        if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S))
+		if (Input.GetKey(KeyCode.DownArrow) || Input.GetKey(KeyCode.S) || Input.GetAxis("Vertical") < 0)
         {
             if (this.transform.position.y > yLimitMin)
             {
@@ -55,7 +55,7 @@ public class PlayerMovement : MonoBehaviour {
                 mov = new Vector2(mov.x, mov.y - speed);
             }
         }
-        else if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W))
+		else if (Input.GetKey(KeyCode.UpArrow) || Input.GetKey(KeyCode.W) || Input.GetAxis("Vertical") > 0)
         {
             if (this.transform.position.y < yLimitMax)
             {
@@ -66,13 +66,14 @@ public class PlayerMovement : MonoBehaviour {
 
 
         // shooting
-        if (Input.GetKeyDown(KeyCode.R))
+        var triggerTreshold = 0.999;
+        if (Input.GetKeyDown(KeyCode.R) || Input.GetAxis("Fire1") > triggerTreshold)
         {
             GameObject.FindGameObjectWithTag("PlayerAnim").GetComponent<Animator>().SetTrigger("Shoot");
         }
 
 
-        if(Input.GetKeyDown(KeyCode.Space))
+		if(Input.GetKeyDown(KeyCode.Space) || Input.GetAxis("Fire2") > triggerTreshold)
         {
             
             GameObject.FindGameObjectWithTag("PlayerAnim").GetComponent<Animator>().SetTrigger("Attack");
